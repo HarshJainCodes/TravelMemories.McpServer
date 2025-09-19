@@ -1,0 +1,6 @@
+@TravelMemories.McpServer_HostAddress = http://localhost:5245
+
+GET {{TravelMemories.McpServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
