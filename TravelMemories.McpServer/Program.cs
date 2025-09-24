@@ -1,16 +1,22 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using TravelMemories.McpServer.Utilities;
+using TravelMemoriesBackend.ApiClient.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IRequestContextProvider, RequestContextProvider>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// this is coming from the backend side which has exposed the api clients for this MCP server to call
+builder.Services.AddApiClients("https://localhost:7221");   // this URL can be configured based on the environment
 
 builder.Services.AddAuthentication(options =>
 {
@@ -31,6 +37,12 @@ builder.Services.AddAuthentication(options =>
     {
         OnMessageReceived = context =>
         {
+            var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+            if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
+            {
+                context.Token = authHeader.Substring("Bearer ".Length).Trim();
+                return Task.CompletedTask;
+            }
             context.Token = context.Request.Cookies["travelMemoriestoken"];
             return Task.CompletedTask;
         }
@@ -66,7 +78,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapMcp();
-//app.MapMcp().RequireAuthorization();
+//app.MapMcp();
+app.MapMcp().RequireAuthorization();
 
 app.Run();
