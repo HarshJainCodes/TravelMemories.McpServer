@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // this is coming from the backend side which has exposed the api clients for this MCP server to call
-builder.Services.AddApiClients("https://localhost:7221");   // this URL can be configured based on the environment
+builder.Services.AddApiClients(builder.Configuration["BACKEND_URL"]);   // this URL can be configured based on the environment
 
 builder.Services.AddAuthentication(options =>
 {

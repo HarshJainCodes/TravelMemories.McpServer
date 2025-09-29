@@ -40,7 +40,7 @@ namespace TravelMemories.McpServer.Controllers
 
             mcpHttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.RawData);
 
-            await kernel.Plugins.AddMcpFunctionsFromSseServerAsync("TravelMemoriesMCPServer", new Uri("https://localhost:7210/sse"), httpClient: mcpHttpClient);
+            await kernel.Plugins.AddMcpFunctionsFromSseServerAsync("TravelMemoriesMCPServer", new Uri(_configuration["MCPServerUrl"]), httpClient: mcpHttpClient);
 
             var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
