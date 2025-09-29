@@ -32,7 +32,7 @@ namespace TravelMemories.McpServer.Controllers
         [HttpPost]
         public async Task<string> TestController(UserPrmopt userPrompt)
         {
-            IKernelBuilder kernelBuilder = Kernel.CreateBuilder().AddAzureOpenAIChatCompletion("gpt-4o-mini", "https://travel-memories-bot.openai.azure.com/", _configuration["azureOpenAIKey"]);
+            IKernelBuilder kernelBuilder = Kernel.CreateBuilder().AddAzureOpenAIChatCompletion("gpt-4o", "https://travel-memories-bot.openai.azure.com/", _configuration["azureOpenAIKey"]);
             var token = _requestContextProvider.GetJWTToken();
 
             Kernel kernel = kernelBuilder.Build();
