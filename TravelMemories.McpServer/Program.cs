@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TravelMemories.McpServer.Utilities;
-using TravelMemoriesBackend.ApiClient.Configuration;
+using TravelMemoriesBackend.ApiClient.DependencyConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
