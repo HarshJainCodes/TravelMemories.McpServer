@@ -1,6 +1,9 @@
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TravelMemories.McpServer.Configuration.ApplicationInsights;
 using TravelMemories.McpServer.Utilities;
 using TravelMemoriesBackend.ApiClient.DependencyConfiguration;
 
@@ -9,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IRequestContextProvider, RequestContextProvider>();
+
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+{
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+});
+
+builder.Services.AddSingleton<ITelemetryInitializer, AppInsightsConfiguration>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
