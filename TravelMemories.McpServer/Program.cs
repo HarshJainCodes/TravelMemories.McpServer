@@ -69,7 +69,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMcpServer().WithHttpTransport().WithToolsFromAssembly();
+builder.Services.AddMcpServer().WithHttpTransport(o =>
+{
+    o.PerSessionExecutionContext = true;
+}).WithToolsFromAssembly();
 
 var app = builder.Build();
 
