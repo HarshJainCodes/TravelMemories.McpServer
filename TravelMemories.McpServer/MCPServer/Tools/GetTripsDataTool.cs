@@ -26,7 +26,7 @@ namespace TravelMemories.McpServer.MCPServer.Tools
         /// </summary>
         /// <returns></returns>
         [McpServerTool]
-        public async Task<string> GetTotalTripsCountForUser()
+        public async Task<string> GetTripsCount()
         {
             var token = _requestContextProvider.GetJWTToken();
 
@@ -40,7 +40,7 @@ namespace TravelMemories.McpServer.MCPServer.Tools
         /// <param name="Year"></param>
         /// <returns></returns>
         [McpServerTool]
-        public async Task<string> GetAllTripsInAYear(int Year)
+        public async Task<string> GetAllTrips(int Year)
         {
             var token = _requestContextProvider.GetJWTToken();
 
