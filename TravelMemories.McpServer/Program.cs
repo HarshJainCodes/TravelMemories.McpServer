@@ -93,7 +93,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.MapMcp();
-app.MapMcp();
+app.MapMcp().RequireAuthorization();
 
 app.Run();
