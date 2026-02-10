@@ -97,8 +97,13 @@ app.MapGet("/.well-known/oauth-authorization-server", () =>
 {
     return Results.Json(new
     {
+        issuer = "https://localhost:5001",
         authorization_endpoint = "https://localhost:5001/oauth/authorize",
+        token_endpoint = "https://localhost:5001/oauth/token",
+        scopes_supported = new[] { "openid", "profile", "email" },
         response_types_supported = new[] { "code" },
+        grant_types_supported = new[] { "authorization_code", "refresh_token" },
+        code_challenge_methods_supported = new[] { "S256" }
     });
 });
 
