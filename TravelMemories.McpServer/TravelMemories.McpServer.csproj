@@ -19,8 +19,4 @@
     <PackageReference Include="TravelMemoriesBackend.Contracts" Version="0.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
