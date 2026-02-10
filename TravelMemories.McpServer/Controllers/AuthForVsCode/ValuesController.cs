@@ -10,7 +10,7 @@ namespace TravelMemories.McpServer.Controllers.AuthForVsCode
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        public async Task RenderPermissionPage(
+        public IActionResult RenderPermissionPage(
             [FromQuery] string client_id, 
             [FromQuery] string response_type,
             [FromQuery] string code_challenge,
@@ -19,12 +19,13 @@ namespace TravelMemories.McpServer.Controllers.AuthForVsCode
             [FromQuery] string redirect_uri,
             [FromQuery] string state)
         {
-            var html = Path.Combine("Controllers", "Authorize.html");
+            var filePath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "authorize.html"
+            );
 
-            var htmlContent = await System.IO.File.ReadAllTextAsync(html);
-
-            HttpContext.Response.ContentType = "text/html";
-            await HttpContext.Response.WriteAsync(htmlContent);
+            return PhysicalFile(filePath, "text/html");
         }
     }
 }
