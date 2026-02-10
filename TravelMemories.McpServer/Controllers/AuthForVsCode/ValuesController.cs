@@ -12,7 +12,7 @@ namespace TravelMemories.McpServer.Controllers.AuthForVsCode
         [HttpGet]
         public async Task RenderPermissionPage(
             [FromQuery] string client_id, 
-            [FromQuery] string response_ype,
+            [FromQuery] string response_type,
             [FromQuery] string code_challenge,
             [FromQuery] string code_challenge_method,
             [FromQuery] string scope,
