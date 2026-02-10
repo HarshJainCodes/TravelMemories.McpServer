@@ -93,6 +93,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/.well-known/oauth-authorization-server", () =>
+{
+    return Results.Json(new
+    {
+        authorization_endpoint = "https://localhost:5001/oauth/authorize",
+        response_types_supported = new[] { "code" },
+    });
+});
+
 app.MapMcp().RequireAuthorization();
 
 app.Run();
