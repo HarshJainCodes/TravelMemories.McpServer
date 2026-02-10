@@ -19,17 +19,12 @@ namespace TravelMemories.McpServer.Controllers.AuthForVsCode
             [FromQuery] string redirect_uri,
             [FromQuery] string state)
         {
-            var html = @"
-<html>
-    <body>
-        please grant permission
-    </body>
-</html>
+            var html = Path.Combine("Controllers", "Authorize.html");
 
-            ";
+            var htmlContent = await System.IO.File.ReadAllTextAsync(html);
 
             HttpContext.Response.ContentType = "text/html";
-            await HttpContext.Response.WriteAsync(html);
+            await HttpContext.Response.WriteAsync(htmlContent);
         }
     }
 }
