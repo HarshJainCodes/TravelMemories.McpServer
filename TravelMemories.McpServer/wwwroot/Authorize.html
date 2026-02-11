@@ -815,7 +815,7 @@
                 try {
                     const localUrl = 'https://localhost:7221/EmailService/SendOtpOAuthFlow/';
                     const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/SendOtpOAuthFlow/'
-                    const response = await fetch(localUrl, {
+                    const response = await fetch(prodUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1034,7 +1034,7 @@
 
                     const localUrl = 'https://localhost:7221/EmailService/VerifyOtpVsCode';
                     const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/VerifyOtpVsCode'
-                    const response = await fetch(localUrl, {
+                    const response = await fetch(prodUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
