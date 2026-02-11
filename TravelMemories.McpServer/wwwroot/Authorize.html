@@ -680,7 +680,7 @@
 
             getLoginChallenge() {
                 const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get('login_challenge') || 'default_challenge';
+                return urlParams.get('code_challenge') || 'default_challenge';
             }
 
             bindEvents() {
@@ -813,18 +813,16 @@
                 this.sendOtpBtn.textContent = 'Sending...';
 
                 try {
-                    const localUrl = 'https://localhost:7221/EmailService/';
-                    const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/'
-                    const response = await fetch(prodUrl, {
+                    const localUrl = 'https://localhost:7221/EmailService/SendOtpOAuthFlow/';
+                    const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/SendOtpOAuthFlow/'
+                    const response = await fetch(localUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            //id: inputValue,
-                            //type: 'email',
-                            //login_challenge: this.loginChallenge
-                            receiverEmail: inputValue,
+                            loginChallenge: this.loginChallenge,
+                            email: inputValue,
                         })
                     });
 
@@ -1036,7 +1034,7 @@
 
                     const localUrl = 'https://localhost:7221/EmailService/VerifyOtpVsCode';
                     const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/VerifyOtpVsCode'
-                    const response = await fetch(prodUrl, {
+                    const response = await fetch(localUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
