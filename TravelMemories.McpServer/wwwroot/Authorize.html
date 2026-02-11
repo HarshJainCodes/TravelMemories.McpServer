@@ -1052,7 +1052,7 @@
 
                         // Check if redirect URI is provided in the response (OAuth wrapper returns 'redirect_uri')
                         if (result.redirectUri) {
-                            const redirectURL = `${result.redirectUri}?state=${queryParams.state}&clientId=${queryParams.client_id}&code=abc`
+                            const redirectURL = `${result.redirectUri}?state=${queryParams.state}&clientId=${queryParams.client_id}&code=${result.code}`
                             window.location.href = redirectURL;
                         }
                         else {
