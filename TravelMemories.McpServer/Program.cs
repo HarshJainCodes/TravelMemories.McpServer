@@ -93,7 +93,20 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.MapMcp();
-app.MapMcp();
+app.MapGet("/.well-known/oauth-authorization-server", () =>
+{
+    return Results.Json(new
+    {
+        issuer = "https://mcpservermemories.harshjain17.com/",
+        authorization_endpoint = "https://memories.harshjain17.com/oauth/authorize",
+        token_endpoint = "https://memories.harshjain17.com//oauth/token",
+        scopes_supported = new[] { "openid", "profile", "email" },
+        response_types_supported = new[] { "code" },
+        grant_types_supported = new[] { "authorization_code", "refresh_token" },
+        code_challenge_methods_supported = new[] { "S256" }
+    });
+});
+
+app.MapMcp().RequireAuthorization();
 
 app.Run();

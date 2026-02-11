@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <None Include="wwwroot\Authorize.html" />
   </ItemGroup>
 
 </Project>
