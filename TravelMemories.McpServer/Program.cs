@@ -97,9 +97,9 @@ app.MapGet("/.well-known/oauth-authorization-server", () =>
 {
     return Results.Json(new
     {
-        issuer = "https://mcpservermemories.harshjain17.com/",
-        authorization_endpoint = "https://mcpservermemories.harshjain17.com/authorize",
-        token_endpoint = "https://travelmemoriesbackend.harshjain17.com/OAuthVerify/Token",
+        issuer = "https://mcpservermemories.azurewebsites.net/",
+        authorization_endpoint = "https://mcpservermemories.azurewebsites.net/authorize",
+        token_endpoint = "https://travelmemories.azurewebsites.net/OAuthVerify/Token",
         scopes_supported = new[] { "openid", "profile", "email" },
         response_types_supported = new[] { "code" },
         grant_types_supported = new[] { "authorization_code", "refresh_token" },
