@@ -814,7 +814,7 @@
 
                 try {
                     const localUrl = 'https://localhost:7221/EmailService/SendOtpOAuthFlow/';
-                    const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/SendOtpOAuthFlow/'
+                    const prodUrl = 'https://travelmemories.azurewebsites.net/EmailService/SendOtpOAuthFlow/'
                     const response = await fetch(prodUrl, {
                         method: 'POST',
                         headers: {
@@ -1033,7 +1033,7 @@
                     const queryParams = Object.fromEntries(urlParams);
 
                     const localUrl = 'https://localhost:7221/EmailService/VerifyOtpVsCode';
-                    const prodUrl = 'https://travelmemoriesbackend.harshjain17.com/EmailService/VerifyOtpVsCode'
+                    const prodUrl = 'https://travelmemories.azurewebsites.net/EmailService/VerifyOtpVsCode'
                     const response = await fetch(prodUrl, {
                         method: 'POST',
                         headers: {
@@ -1068,7 +1068,6 @@
                         this.showError(errorMessage, true);
                         this.clearOtpInputs();
                     }
-
                 } catch (error) {
                     console.error('Error verifying OTP:', error);
                     this.showError('Invalid OTP. Please try again.', true);
