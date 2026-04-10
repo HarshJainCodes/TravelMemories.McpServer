@@ -15,6 +15,7 @@ import { defineComponent } from 'vue';
 import { LoginPageV2, LoginModes } from 'corecomponentshj';
 import { BACKEND_URL } from './Constants';
 import { TYPE, useToast } from 'vue-toastification';
+import type { CallbackTypes } from 'vue3-google-login';
 
 export default defineComponent({
 	components: {
@@ -30,6 +31,37 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const toast = useToast();
 		const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+		const onGoogleAuthenticated: CallbackTypes.TokenResponseCallback = async (res) => {
+			const google_jwt = res.access_token;
+
+			const googleLoginCall = await fetch(`${BACKEND_URL}/auth/googleLogin`, {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+				},
+				body: JSON.stringify({
+					idToken: google_jwt,
+					loginChallenge: props.loginChallenge,
+					needOAuthCode: true,
+				}),
+				credentials: 'include',
+			});
+
+			if (googleLoginCall.status === 200) {
+				const response = await googleLoginCall.json();
+
+				emit('authenticated', {
+					code: response.code,
+					redirectUri: response.redirectUri,
+				});
+			}
+			if (googleLoginCall.status === 401) {
+				toast('Not able to authenticate', {
+					type: TYPE.ERROR,
+				});
+			}
+		};
 
 		const onSendVerficationCode = async (email: String) => {
 			const sendVerficationCall = await fetch(
@@ -91,6 +123,7 @@ export default defineComponent({
 			onSendVerficationCode,
 			onClickResendOtp,
 			onClickVerifyOtp,
+			onGoogleAuthenticated,
 		};
 	},
 });

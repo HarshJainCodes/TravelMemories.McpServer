@@ -105,16 +105,6 @@ app.MapGet("/.well-known/oauth-authorization-server", () =>
         grant_types_supported = new[] { "authorization_code", "refresh_token" },
         code_challenge_methods_supported = new[] { "S256" }
     });
-    //return Results.Json(new
-    //{
-    //    issuer = "https://localhost:7210",
-    //    authorization_endpoint = "https://localhost:7210/authorize",
-    //    token_endpoint = "https://localhost:7221/OAuthVerify/Token",
-    //    scopes_supported = new[] { "openid", "profile", "email" },
-    //    response_types_supported = new[] { "code" },
-    //    grant_types_supported = new[] { "authorization_code", "refresh_token" },
-    //    code_challenge_methods_supported = new[] { "S256" }
-    //});
 });
 
 app.UseStaticFiles();
