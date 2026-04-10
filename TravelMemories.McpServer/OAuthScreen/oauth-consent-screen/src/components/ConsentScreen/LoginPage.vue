@@ -33,6 +33,7 @@ export default defineComponent({
 		const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 		const onGoogleAuthenticated: CallbackTypes.TokenResponseCallback = async (res) => {
+			console.log('here');
 			const google_jwt = res.access_token;
 
 			const googleLoginCall = await fetch(`${BACKEND_URL}/auth/googleLogin`, {
