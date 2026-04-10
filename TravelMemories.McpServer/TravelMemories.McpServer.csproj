@@ -23,4 +23,8 @@
     <None Include="wwwroot\Authorize.html" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="OAuthScreen\" />
+  </ItemGroup>
+
 </Project>

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TravelMemories.McpServer.Controllers.AuthForVsCode
 {
-    [Route("authorize")]
+    [Route("oauth-screen")]
     [ApiController]
     [AllowAnonymous]
     public class ValuesController : ControllerBase
@@ -22,7 +22,8 @@ namespace TravelMemories.McpServer.Controllers.AuthForVsCode
             var filePath = Path.Combine(
                 Directory.GetCurrentDirectory(),
                 "wwwroot",
-                "authorize.html"
+                "oauth-screen",
+                "index.html"
             );
 
             return PhysicalFile(filePath, "text/html");

@@ -98,7 +98,7 @@ app.MapGet("/.well-known/oauth-authorization-server", () =>
     return Results.Json(new
     {
         issuer = "https://mcpservermemories.azurewebsites.net/",
-        authorization_endpoint = "https://mcpservermemories.azurewebsites.net/authorize",
+        authorization_endpoint = "https://mcpservermemories.azurewebsites.net/oauth-screen",
         token_endpoint = "https://travelmemories.azurewebsites.net/OAuthVerify/Token",
         scopes_supported = new[] { "openid", "profile", "email" },
         response_types_supported = new[] { "code" },
@@ -116,6 +116,8 @@ app.MapGet("/.well-known/oauth-authorization-server", () =>
     //    code_challenge_methods_supported = new[] { "S256" }
     //});
 });
+
+app.UseStaticFiles();
 
 app.MapMcp().RequireAuthorization();
 
