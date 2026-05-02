@@ -65,7 +65,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("TraveMemories.McpServer", policy =>
     {
-        policy.WithOrigins("https://localhost:5173", "https://memories.harshjain17.com").AllowCredentials().AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("http://localhost:5173", "https://localhost:5173", "https://memories.harshjain17.com").AllowCredentials().AllowAnyHeader().AllowAnyMethod();
     });
 });
 
